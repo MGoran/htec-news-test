@@ -27,10 +27,11 @@ import { reducer } from './store/reducer';
     ShellModule,
     HomeModule,
     AboutModule,
-    StoreModule.forRoot(reducer),
+    StoreModule.forRoot({ main: reducer }),
     AppRoutingModule, // must be imported as the last module as it contains the fallback route
   ],
   declarations: [AppComponent],
+  exports: [],
   providers: [],
   bootstrap: [AppComponent],
 })

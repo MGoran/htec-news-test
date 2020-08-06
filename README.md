@@ -90,9 +90,6 @@ Tasks are mostly based on the `angular-cli` tool. Use `ng help` to get more help
 All `.ts`, `.js` & `.scss` files in this project are formatted automatically using [Prettier](https://prettier.io),
 and enforced via the `test:ci` script.
 
-A pre-commit git hook has been configured on this project to automatically format staged files, using
-(pretty-quick)[https://github.com/azz/pretty-quick], so you don't have to care for it.
-
 You can also force code formatting by running the command `npm run prettier`.
 
 # What's in the box
