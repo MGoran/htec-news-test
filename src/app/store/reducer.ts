@@ -1,7 +1,7 @@
 import { createReducer, on, Action } from '@ngrx/store';
 import { changeCountry } from './actions';
 
-export type Countries = 'GB' | 'US';
+export type Countries = 'gb' | 'us';
 export interface IRootState {
   main: IState;
 }
@@ -10,7 +10,7 @@ export interface IState {
 }
 
 export const initialState = {
-  country: 'GB',
+  country: 'gb',
 };
 
 const _reducer = createReducer(
