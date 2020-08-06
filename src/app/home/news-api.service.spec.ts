@@ -3,10 +3,10 @@ import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CoreModule } from '@core';
-import { NewsApiService } from './news-api.service';
+import { NewsApiService, NewsApiResponse } from './news-api.service';
 
-describe('QuoteService', () => {
-  let quoteService: NewsApiService;
+describe('NewsApiService', () => {
+  let newsApiService: NewsApiService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -15,7 +15,7 @@ describe('QuoteService', () => {
       providers: [NewsApiService],
     });
 
-    quoteService = TestBed.inject(NewsApiService);
+    newsApiService = TestBed.inject(NewsApiService);
     httpMock = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   });
 
@@ -24,28 +24,32 @@ describe('QuoteService', () => {
   });
 
   describe('getRandomQuote', () => {
-    it('should return a random Chuck Norris quote', () => {
+    it('should status OK', () => {
       // Arrange
-      const mockQuote = { value: 'a random quote' };
+      const mockResponse: NewsApiResponse = {
+        status: 'ok',
+        totalResults: 1,
+        articles: []
+      };
 
       // Act
-      const randomQuoteSubscription = quoteService.getRandomQuote({ category: 'toto' });
+      const newsApiSubscription = newsApiService.getTopNews({ country: 'gb' });
 
       // Assert
-      randomQuoteSubscription.subscribe((quote: string) => {
-        expect(quote).toEqual(mockQuote.value);
+      newsApiSubscription.subscribe((quote: string) => {
+        expect(quote).toEqual(mockResponse.status);
       });
-      httpMock.expectOne({}).flush(mockQuote);
+      httpMock.expectOne({}).flush(mockResponse);
     });
 
     it('should return a string in case of error', () => {
       // Act
-      const randomQuoteSubscription = quoteService.getRandomQuote({ category: 'toto' });
+      const randomQuoteSubscription = newsApiService.getTopNews({ country: 'gb' });
 
       // Assert
-      randomQuoteSubscription.subscribe((quote: string) => {
-        expect(typeof quote).toEqual('string');
-        expect(quote).toContain('Error');
+      randomQuoteSubscription.subscribe((response: string) => {
+        expect(typeof response).toEqual('string');
+        expect(response).toContain('Error');
       });
       httpMock.expectOne({}).flush(null, {
         status: 500,

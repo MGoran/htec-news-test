@@ -5,16 +5,19 @@ import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
 import { HomeComponent } from './home.component';
 import { NewsApiService } from './news-api.service';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { initialState } from '@app/store/reducer';
 
 describe('HomeComponent', () => {
   let component: HomeComponent;
   let fixture: ComponentFixture<HomeComponent>;
+  let store: MockStore;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [CoreModule, SharedModule, HttpClientTestingModule],
       declarations: [HomeComponent],
-      providers: [NewsApiService],
+      providers: [NewsApiService, provideMockStore({ initialState: { main: initialState } })],
     }).compileComponents();
   }));
 
@@ -22,6 +25,7 @@ describe('HomeComponent', () => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
+    store = TestBed.inject(MockStore);
   });
 
   it('should create', () => {
