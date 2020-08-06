@@ -2,6 +2,9 @@ import { createReducer, on, Action } from '@ngrx/store';
 import { changeCountry } from './actions';
 
 export type Countries = 'GB' | 'US';
+export interface IRootState {
+  main: IState;
+}
 export interface IState {
   country: Countries;
 }
