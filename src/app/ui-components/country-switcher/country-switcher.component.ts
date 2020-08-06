@@ -11,10 +11,10 @@ import { map } from 'rxjs/operators';
   styleUrls: ['./country-switcher.component.scss'],
 })
 export class CountrySwitcherComponent implements OnInit {
-  public selectedLanguage$: Observable<Countries>;
+  public selectedCountry$: Observable<Countries>;
 
   constructor(private store: Store<IRootState>) {
-    this.selectedLanguage$ = this.store.pipe(map((state) => state.main.country));
+    this.selectedCountry$ = this.store.pipe(map((state) => state.main.country));
   }
 
   public ngOnInit(): void {}

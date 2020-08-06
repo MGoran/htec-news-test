@@ -35,11 +35,11 @@ describe('CountrySwitcherComponent', () => {
     it('should have default country set to GB', async () => {
       component.selectedLanguage$.pipe(
         take(1),
-      ).subscribe(result => expect(result).toBe('GB'));
+      ).subscribe(result => expect(result).toBe('gb'));
     });
 
     it('should set country to US', async () => {
-      const newCountry = 'US';
+      const newCountry = 'us';
       component.changeCountry(newCountry);
 
       component.selectedLanguage$.pipe(

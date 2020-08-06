@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
-import { QuoteService } from './quote.service';
+import { NewsApiService, NewsArticle } from './news-api.service';
+import { Countries, IRootState } from '@app/store/reducer';
+import { Observable } from 'rxjs';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-home',
@@ -9,22 +12,30 @@ import { QuoteService } from './quote.service';
   styleUrls: ['./home.component.scss'],
 })
 export class HomeComponent implements OnInit {
-  quote: string | undefined;
-  isLoading = false;
+  public selectedCountry$: Observable<Countries>;
+  public articles: NewsArticle[];
+  public isLoading = false;
 
-  constructor(private quoteService: QuoteService) {}
+  constructor(private newsApiService: NewsApiService, private store: Store<IRootState>) {
+    this.selectedCountry$ = this.store.pipe(map((state) => state.main.country));
+  }
 
-  ngOnInit() {
+  public ngOnInit () {
+    this.selectedCountry$.subscribe((country: Countries) => {
+      this.getTopNews(country);
+    });
+  }
+
+  public getTopNews (country: Countries) {
     this.isLoading = true;
-    this.quoteService
-      .getRandomQuote({ category: 'dev' })
+    this.newsApiService
+      .getTopNews({ country })
       .pipe(
         finalize(() => {
           this.isLoading = false;
         })
-      )
-      .subscribe((quote: string) => {
-        this.quote = quote;
+      ).subscribe((articles: NewsArticle[]) => {
+        this.articles = articles;
       });
   }
 }

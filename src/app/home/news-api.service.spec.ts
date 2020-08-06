@@ -3,19 +3,19 @@ import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
 import { CoreModule } from '@core';
-import { QuoteService } from './quote.service';
+import { NewsApiService } from './news-api.service';
 
 describe('QuoteService', () => {
-  let quoteService: QuoteService;
+  let quoteService: NewsApiService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [CoreModule, HttpClientTestingModule],
-      providers: [QuoteService],
+      providers: [NewsApiService],
     });
 
-    quoteService = TestBed.inject(QuoteService);
+    quoteService = TestBed.inject(NewsApiService);
     httpMock = TestBed.inject(HttpTestingController as Type<HttpTestingController>);
   });
 
