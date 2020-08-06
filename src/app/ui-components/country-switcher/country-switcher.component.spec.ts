@@ -3,6 +3,7 @@ import { provideMockStore, MockStore } from '@ngrx/store/testing';
 
 import { CountrySwitcherComponent } from './country-switcher.component';
 import { initialState } from '@app/store/reducer';
+import { take } from 'rxjs/operators';
 
 describe('CountrySwitcherComponent', () => {
   let component: CountrySwitcherComponent;
@@ -13,7 +14,7 @@ describe('CountrySwitcherComponent', () => {
     TestBed.configureTestingModule({
       declarations: [CountrySwitcherComponent],
       providers: [
-        provideMockStore({ initialState }),
+        provideMockStore({ initialState: { main: initialState } }),
       ],
 
     }).compileComponents();
@@ -28,5 +29,22 @@ describe('CountrySwitcherComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  describe('changeCountry', () => {
+    it('should have default country set to GB', async () => {
+      component.selectedLanguage$.pipe(
+        take(1),
+      ).subscribe(result => expect(result).toBe('GB'));
+    });
+
+    it('should set country to US', async () => {
+      const newCountry = 'US';
+      component.changeCountry(newCountry);
+
+      component.selectedLanguage$.pipe(
+        take(1),
+      ).subscribe(result => expect(result).toBe(newCountry));
+    });
   });
 });
