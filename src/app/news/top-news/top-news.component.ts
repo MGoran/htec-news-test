@@ -1,17 +1,17 @@
 import { Component, OnInit } from '@angular/core';
 import { finalize, map } from 'rxjs/operators';
 
-import { NewsApiService, NewsArticle } from './news-api.service';
+import { NewsApiService, NewsArticle } from './../service/news-api.service';
 import { Countries, IRootState } from '@app/store/reducer';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
 
 @Component({
-  selector: 'app-home',
+  selector: 'app-top-news',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
 })
-export class HomeComponent implements OnInit {
+export class TopNewsComponent implements OnInit {
   public selectedCountry$: Observable<Countries>;
   public articles: NewsArticle[];
   public isLoading = false;
