@@ -7,7 +7,7 @@ import { NewsArticle } from '../service/news-api.service';
   styleUrls: ['./article-card.component.scss']
 })
 export class ArticleCardComponent implements OnInit {
-  @Input('article') public article: NewsArticle;
+  @Input() public article: NewsArticle;
 
   constructor() { }
 
