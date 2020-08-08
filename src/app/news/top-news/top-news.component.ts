@@ -15,6 +15,7 @@ import { extract } from '@app/i18n';
 })
 export class TopNewsComponent implements OnInit {
   public selectedCountry$: Observable<Countries>;
+  public selectedCountry: Countries;
   public articles: NewsArticle[];
 
   constructor(private newsApiService: NewsApiService, private store: Store<IRootState>) {
@@ -23,7 +24,7 @@ export class TopNewsComponent implements OnInit {
 
   public ngOnInit () {
     this.selectedCountry$.subscribe((country: Countries) => {
-      console.log(country);
+      this.selectedCountry = country;
       this.getTopNews(country);
     });
   }
@@ -39,6 +40,11 @@ export class TopNewsComponent implements OnInit {
         })
       ).subscribe((articles: NewsArticle[]) => {
         this.articles = articles;
+        console.log(this.articles);
       });
+  }
+
+  public getCountryLabel (country: Countries) {
+    return country === 'gb' ? 'Great Britain' : 'United States';
   }
 }

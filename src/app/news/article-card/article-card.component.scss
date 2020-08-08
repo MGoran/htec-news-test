@@ -1,0 +1,10 @@
+.article-card {
+    height: 100%;
+
+    &__more {
+        display: block;
+    }
+    &__image {
+        height: 275px;
+    }
+}

@@ -6,9 +6,10 @@ import { CoreModule } from '@core';
 import { SharedModule } from '@shared';
 import { NewsRoutingModule } from './news-routing.module';
 import { TopNewsComponent } from './top-news/top-news.component';
+import { ArticleCardComponent } from './article-card/article-card.component';
 
 @NgModule({
   imports: [CommonModule, TranslateModule, CoreModule, SharedModule, NewsRoutingModule],
-  declarations: [TopNewsComponent],
+  declarations: [TopNewsComponent, ArticleCardComponent],
 })
 export class NewsModule { }

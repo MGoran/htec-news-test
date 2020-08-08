@@ -1,5 +1,12 @@
 <div class="container-fluid">
-    <div class="jumbotron text-center">
-        test
+    <div class="row">
+        <div class="col-12">
+            <h4><span translate>Top News from</span> {{getCountryLabel(selectedCountry)}}:</h4>
+        </div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let article of articles">
+            <app-article-card [article]="article"></app-article-card>
+        </div>
     </div>
 </div>
