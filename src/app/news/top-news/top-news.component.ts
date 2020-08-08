@@ -5,6 +5,8 @@ import { NewsApiService, NewsArticle } from './../service/news-api.service';
 import { Countries, IRootState } from '@app/store/reducer';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
+import { toggleLoader } from '@app/store/actions';
+import { extract } from '@app/i18n';
 
 @Component({
   selector: 'app-top-news',
@@ -14,25 +16,26 @@ import { Store } from '@ngrx/store';
 export class TopNewsComponent implements OnInit {
   public selectedCountry$: Observable<Countries>;
   public articles: NewsArticle[];
-  public isLoading = false;
 
   constructor(private newsApiService: NewsApiService, private store: Store<IRootState>) {
-    this.selectedCountry$ = this.store.pipe(map((state) => state.main.country));
+    this.selectedCountry$ = this.store.select('main', 'country');
   }
 
   public ngOnInit () {
     this.selectedCountry$.subscribe((country: Countries) => {
+      console.log(country);
       this.getTopNews(country);
     });
   }
 
   public getTopNews (country: Countries) {
-    this.isLoading = true;
+    this.store.dispatch(toggleLoader({ isLoading: true, message: 'Loading Top News' }));
+
     this.newsApiService
       .getTopNews({ country })
       .pipe(
         finalize(() => {
-          this.isLoading = false;
+          this.store.dispatch(toggleLoader({ isLoading: false }));
         })
       ).subscribe((articles: NewsArticle[]) => {
         this.articles = articles;
