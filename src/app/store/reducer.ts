@@ -1,5 +1,5 @@
 import { createReducer, on, Action } from '@ngrx/store';
-import { changeCountry, toggleLoader, loadNews, disableCountrySwitcher } from './actions';
+import { changeCountry, toggleLoader, loadNews, toggleCountrySwitcher } from './actions';
 import { NewsArticle } from '@app/news/service/news-api.service';
 
 export type Countries = 'gb' | 'us';
@@ -36,7 +36,7 @@ export const initialState = {
 const _reducer = createReducer(
   initialState,
   on(changeCountry, (state: IState, { country }) => ({ ...state, country })),
-  on(disableCountrySwitcher, (state: IState, { disableCountrySwitcher }) => ({ ...state, disableCountrySwitcher })),
+  on(toggleCountrySwitcher, (state: IState, { disableCountrySwitcher }) => ({ ...state, disableCountrySwitcher })),
   on(toggleLoader, (state: IState, loaderSettings) => ({ ...state, loaderSettings })),
   on(loadNews, (state: IState, payload) => ({ ...state, news: Object.assign({}, state.news, payload) })),
 );

@@ -7,7 +7,7 @@ import { IRootState, CategoriesMap } from '@app/store/reducer';
 import { Observable, Subscription } from 'rxjs';
 import { getItemByCategoryAndIdx } from '@app/store/selectors';
 import { take } from 'rxjs/operators';
-import { disableCountrySwitcher } from '@app/store/actions';
+import { toggleCountrySwitcher } from '@app/store/actions';
 
 @Component({
   selector: 'app-article',
@@ -30,14 +30,14 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit (): void {
-    this.route.params.subscribe((params) => {
-      const articleIndex = params["index"];
-      const category = params["category"];
+    this.route.paramMap.subscribe((params) => {
+      const articleIndex = params.get('index');
+      const category = params.get('category');
 
       this.subscriptions.push(this.store.select(getItemByCategoryAndIdx(category, articleIndex)).pipe(take(1))
         .subscribe((article) => {
           if (!article) { this.router.navigateByUrl('/'); }
-          this.store.dispatch(disableCountrySwitcher({ disableCountrySwitcher: true }));
+          this.store.dispatch(toggleCountrySwitcher({ disableCountrySwitcher: true }));
           this.article = article;
         }));
     });
@@ -48,7 +48,7 @@ export class ArticleComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy (): void {
-    this.store.dispatch(disableCountrySwitcher({ disableCountrySwitcher: false }));
+    this.store.dispatch(toggleCountrySwitcher({ disableCountrySwitcher: false }));
     this.subscriptions.forEach((s) => s.unsubscribe());
   }
 }
