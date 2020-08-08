@@ -1,0 +1,10 @@
+<div class="article container">
+    <div class="card article__card h-100" *ngIf="article">
+        <h3 class="card-title p-3">{{article.title}}</h3>
+        <img class="card-img-top article__image" [src]="article.urlToImage || 'assets/placeholder.png'" alt="article.title" />
+        <div class="card-body">
+            <p class="card-text" [innerHTML]="article.content || article.description"></p>
+        </div>
+        <a (click)="goBack()" class="text-left w-100 article__more"><i class="fa fa-angle-double-left"></i><span translate>Back to list</span></a>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+.article {
+    &__card {
+        border: 0;
+    }
+    &__image {
+        max-width: 500px;
+        margin: auto;
+    }
+    &__more {
+        cursor: pointer;
+    }
+}

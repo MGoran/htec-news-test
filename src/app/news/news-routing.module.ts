@@ -4,11 +4,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { extract } from '@app/i18n';
 import { TopNewsComponent } from './top-news/top-news.component';
 import { Shell } from '@app/shell/shell.service';
+import { ArticleComponent } from './article/article.component';
 
 const routes: Routes = [
   Shell.childRoutes([
     { path: '', redirectTo: '/top-news', pathMatch: 'full' },
     { path: 'top-news', component: TopNewsComponent, data: { title: extract('Top News') } },
+    { path: 'article/:category/:index', component: ArticleComponent, data: { title: extract('Article') } },
     { path: 'categories', component: TopNewsComponent, data: { title: extract('Categories') } },
     { path: 'search', component: TopNewsComponent, data: { title: extract('Search') } },
   ]),
@@ -19,4 +21,4 @@ const routes: Routes = [
   exports: [RouterModule],
   providers: [],
 })
-export class NewsRoutingModule {}
+export class NewsRoutingModule { }

@@ -20,8 +20,6 @@ export class TopNewsComponent implements OnInit {
   constructor(private newsApiService: NewsApiService, private store: Store<IRootState>) {
     this.selectedCountry$ = this.store.select('main', 'country');
     this.topNews$ = this.store.select('main', 'news', 'TopNews');
-
-    this.store.subscribe((res) => { console.log(res) });
   }
 
   public ngOnInit () {
