@@ -1,7 +1,9 @@
 {
-  "APP_NAME": "HTEC-News-Test",
-  "About": "About",
-  "Hello world !": "Hello world !",
-  "Home": "Home",
-  "Version": "Version"
+	"APP_NAME": "HTEC-News-Test",
+	"Categories": "Categories",
+	"Search": "Search",
+	"Top News": "Top News",
+	"Top News from": "Top News from",
+	"Back to list": "Back To List",
+	"More": "More"
 }

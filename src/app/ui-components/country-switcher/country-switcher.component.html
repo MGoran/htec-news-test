@@ -1,8 +1,8 @@
 <div>
-    <button class="btn btn-sm" [class]="(selectedCountry$ | async) === 'gb' ? 'btn-primary' : 'btn-secondary'" (click)="changeCountry('gb')">
+    <button class="btn btn-sm" [class]="(selectedCountry$ | async) === 'gb' ? 'btn-primary' : 'btn-secondary'" (click)="changeCountry('gb')" [disabled]="disabled$ | async">
     GB
   </button>
-    <button class="btn btn-sm" [class]="(selectedCountry$ | async) === 'us' ? 'btn-primary' : 'btn-secondary'" (click)="changeCountry('us')">
+    <button class="btn btn-sm" [class]="(selectedCountry$ | async) === 'us' ? 'btn-primary' : 'btn-secondary'" (click)="changeCountry('us')" [disabled]="disabled$ | async">
     US
   </button>
 </div>

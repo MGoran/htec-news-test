@@ -1,3 +1,14 @@
-.fa {
-  vertical-align: middle;
+.app-loader {
+    position: absolute;
+    top: 0;
+    background-color: rgba(255, 255, 255, 0.7);
+    &__content {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        text-align: center;
+    }
+    .fa {
+        vertical-align: middle;
+    }
 }
