@@ -15,7 +15,7 @@ export class CountrySwitcherComponent {
   public selectedCountry$: Observable<Countries>;
   public disabled$: Observable<boolean>;
 
-  constructor(private store: Store<IRootState>, private route: ActivatedRoute) {
+  constructor(private store: Store<IRootState>) {
     this.selectedCountry$ = this.store.pipe(map((state) => state.main.country));
     this.disabled$ = this.store.pipe(map((state) => state.main.disableCountrySwitcher));
   }

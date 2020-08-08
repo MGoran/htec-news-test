@@ -7,6 +7,8 @@ import { TopNewsComponent } from './top-news.component';
 import { NewsApiService } from './../service/news-api.service';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { initialState } from '@app/store/reducer';
+import { RouterTestingModule } from '@angular/router/testing';
+import { ArticleCardComponent } from '../article-card/article-card.component';
 
 describe('HomeComponent', () => {
   let component: TopNewsComponent;
@@ -15,8 +17,8 @@ describe('HomeComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports: [CoreModule, SharedModule, HttpClientTestingModule],
-      declarations: [TopNewsComponent],
+      imports: [CoreModule, SharedModule, HttpClientTestingModule, RouterTestingModule],
+      declarations: [TopNewsComponent, ArticleCardComponent],
       providers: [NewsApiService, provideMockStore({ initialState: { main: initialState } })],
     }).compileComponents();
   }));

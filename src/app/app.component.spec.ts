@@ -4,14 +4,21 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { CoreModule } from '@core';
 import { AppComponent } from './app.component';
+import { LoaderComponent } from './@shared';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
+import { initialState } from './store/reducer';
 
 describe('AppComponent', () => {
+  let store: MockStore;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [RouterTestingModule, TranslateModule.forRoot(), CoreModule],
-      declarations: [AppComponent],
-      providers: [],
+      declarations: [AppComponent, LoaderComponent],
+      providers: [provideMockStore({ initialState: { main: initialState } })],
     }).compileComponents();
+
+    store = TestBed.inject(MockStore);
   }));
 
   it('should create the app', async(() => {
