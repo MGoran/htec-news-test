@@ -42,7 +42,6 @@ export class NewsApiService {
   public getTopNews (context: NewsContext): Observable<NewsArticle[] | string> {
     return this.httpClient.get(routes.topNews(context)).pipe(
       map((body: NewsApiResponse) => {
-        console.log(body);
         return body.articles;
       }),
       catchError(() => of('Error, could not load data :-('))

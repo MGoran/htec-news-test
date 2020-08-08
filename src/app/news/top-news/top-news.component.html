@@ -5,8 +5,8 @@
         </div>
     </div>
     <div class="row mt-2">
-        <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let article of articles">
-            <app-article-card [article]="article"></app-article-card>
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let article of topNews$  | async; let i = index">
+            <app-article-card [article]="article" [index]="i" [category]="'TopNews'"></app-article-card>
         </div>
     </div>
 </div>

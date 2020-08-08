@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { finalize, map } from 'rxjs/operators';
+import { finalize } from 'rxjs/operators';
 
 import { NewsApiService, NewsArticle } from './../service/news-api.service';
 import { Countries, IRootState } from '@app/store/reducer';
 import { Observable } from 'rxjs';
 import { Store } from '@ngrx/store';
-import { toggleLoader } from '@app/store/actions';
-import { extract } from '@app/i18n';
+import { toggleLoader, loadNews } from '@app/store/actions';
 
 @Component({
   selector: 'app-top-news',
@@ -14,12 +13,15 @@ import { extract } from '@app/i18n';
   styleUrls: ['./top-news.component.scss'],
 })
 export class TopNewsComponent implements OnInit {
+  public topNews$: Observable<NewsArticle[]>;
   public selectedCountry$: Observable<Countries>;
   public selectedCountry: Countries;
-  public articles: NewsArticle[];
 
   constructor(private newsApiService: NewsApiService, private store: Store<IRootState>) {
     this.selectedCountry$ = this.store.select('main', 'country');
+    this.topNews$ = this.store.select('main', 'news', 'TopNews');
+
+    this.store.subscribe((res) => { console.log(res) });
   }
 
   public ngOnInit () {
@@ -39,8 +41,7 @@ export class TopNewsComponent implements OnInit {
           this.store.dispatch(toggleLoader({ isLoading: false }));
         })
       ).subscribe((articles: NewsArticle[]) => {
-        this.articles = articles;
-        console.log(this.articles);
+        this.store.dispatch(loadNews({ TopNews: articles }));
       });
   }
 
