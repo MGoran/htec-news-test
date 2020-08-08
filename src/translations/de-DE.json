@@ -1,7 +1,6 @@
 {
   "APP_NAME": "HTEC-News-Test",
-  "About": "Über",
-  "Hello world !": "Hallo welt !",
-  "Home": "Hause",
-  "Version": "Version"
+  "Categories": "Kategorien",
+	"Search": "Suche",
+	"Top News": "Top Nachrichten"
 }

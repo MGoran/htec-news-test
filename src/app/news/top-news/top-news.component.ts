@@ -8,8 +8,8 @@ import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-top-news',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.scss'],
+  templateUrl: './top-news.component.html',
+  styleUrls: ['./top-news.component.scss'],
 })
 export class TopNewsComponent implements OnInit {
   public selectedCountry$: Observable<Countries>;
