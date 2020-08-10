@@ -7,13 +7,14 @@ import { Countries } from '@app/store/reducer';
 export const API_KEY = 'ef81016019d54f48885dad8513c8dc59';
 export type NewsCategories = 'Entertainment' | 'General' | 'Health' | 'Science' | 'Sport' | 'Technology';
 const routes = {
-  topNews: (c: NewsContext) => `/top-headlines?country=${c.country}&apiKey=${API_KEY}`,
+  topNews: (c: NewsContext) => `/top-headlines?country=${c.country}&apiKey=${API_KEY}${c.query ? '&q=' + c.query : ''}`,
   newsByCategory: (c: NewsContext) => `/top-headlines?category=${c.category}&country=${c.country}&apiKey=${API_KEY}`,
 };
 
 export interface NewsContext {
   category?: NewsCategories;
-  country: Countries
+  query?: string;
+  country: Countries;
 }
 
 export interface NewsApiResponse {

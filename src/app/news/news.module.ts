@@ -8,9 +8,11 @@ import { NewsRoutingModule } from './news-routing.module';
 import { TopNewsComponent } from './top-news/top-news.component';
 import { ArticleCardComponent } from './article-card/article-card.component';
 import { ArticleComponent } from './article/article.component';
+import { SearchComponent } from './search/search.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
-  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, NewsRoutingModule],
-  declarations: [TopNewsComponent, ArticleCardComponent, ArticleComponent],
+  imports: [CommonModule, TranslateModule, CoreModule, SharedModule, NewsRoutingModule, FormsModule],
+  declarations: [TopNewsComponent, ArticleCardComponent, ArticleComponent, SearchComponent],
 })
 export class NewsModule { }
