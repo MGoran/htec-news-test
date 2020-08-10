@@ -14,7 +14,7 @@ export class SearchComponent implements OnInit {
   public topNews$: Observable<NewsArticle[]>;
   public selectedCountry$: Observable<Countries>;
   public selectedCountry: Countries;
-  public searchTerm = "";
+  public searchTerm = '';
 
   constructor(private newsApiService: NewsApiService, private store: Store<IRootState>) {
     this.selectedCountry$ = this.store.select('main', 'country');
