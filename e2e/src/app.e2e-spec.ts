@@ -15,9 +15,9 @@ describe('when the app loads', () => {
   });
 
   describe('and the page loads', () => {
-    it('should display the hello message', async () => {
-      await browser.wait(until.visibilityOf(shell.welcomeText), 5000, 'Element taking too long to appear');
-      expect(await shell.getParagraphText()).toEqual('Hello world !');
+    it('should display the loader', async () => {
+      await browser.wait(until.visibilityOf(shell.appTitleText), 5000, 'Element taking too long to appear');
+      expect(await shell.getAppTitle()).toEqual('HTEC-News-Test');
     });
   });
 });

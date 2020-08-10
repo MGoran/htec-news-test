@@ -1,0 +1,19 @@
+<div class="search container">
+    <div class="row">
+        <div class="col">
+            <h4><span translate>Search top news from </span> {{getCountryLabel(selectedCountry)}} <span translate>by term</span>:</h4>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col">
+            <input type="text" [(ngModel)]="searchTerm" name="searchTerm" (keydown)="onKeydownEvent($event)" class="form-control w-100" placeholder="Search Term..." />
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-2" *ngFor="let article of topNews$  | async; let i = index">
+            <app-article-card [article]="article" [index]="i" [category]="'TopNews'"></app-article-card>
+        </div>
+    </div>
+</div>

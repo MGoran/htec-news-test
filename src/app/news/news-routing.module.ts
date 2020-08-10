@@ -5,6 +5,7 @@ import { extract } from '@app/i18n';
 import { TopNewsComponent } from './top-news/top-news.component';
 import { Shell } from '@app/shell/shell.service';
 import { ArticleComponent } from './article/article.component';
+import { SearchComponent } from './search/search.component';
 
 const routes: Routes = [
   Shell.childRoutes([
@@ -12,7 +13,7 @@ const routes: Routes = [
     { path: 'top-news', component: TopNewsComponent, data: { title: extract('Top News') } },
     { path: 'article/:category/:index', component: ArticleComponent, data: { title: extract('Article') } },
     { path: 'categories', component: TopNewsComponent, data: { title: extract('Categories') } },
-    { path: 'search', component: TopNewsComponent, data: { title: extract('Search') } },
+    { path: 'search', component: SearchComponent, data: { title: extract('Search') } },
   ]),
 ];
 
